@@ -6,10 +6,9 @@ from html.parser import HTMLParser
 from typing import Set, List
 from concurrent.futures import ThreadPoolExecutor
 
-# Константы
 WIKIPEDIA_BASE_URL = "https://en.wikipedia.org"
 DB_NAME = "links.db"
-MAX_WORKERS = 50  # Максимальное количество потоков
+MAX_WORKERS = 50
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -103,7 +102,6 @@ def crawl_links(start_url: str, depth: int = 6) -> None:
                     logger.info(f"Глубина {current_depth + 1}: Обработка: {url}")
                     futures.append(executor.submit(process_url, url, current_depth + 1, visited, next_to_visit))
             
-            # Ожидаем завершения всех задач
             for future in futures:
                 future.result()
 
