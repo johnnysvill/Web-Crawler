@@ -14,8 +14,8 @@
 ## Установка и использование
 1. Для развертывания проекта клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/wiki-link-crawler.git
-cd wiki-link-crawler
+git clone https://github.com/johnnysvill/Web-Crawler.git
+cd Web-Crawler
 ```
 
 2. Убедитесь, что установлен Python версии 3.10+:
