@@ -8,7 +8,7 @@ class TestWikipediaCrawler(unittest.TestCase):
 
     def setUp(self):
         """Настройка базы данных для тестов."""
-        set_db_name("test_links.db")  # Используем тестовую базу данных
+        set_db_name("test_links.db")
         init_db()
 
     def tearDown(self):
@@ -21,7 +21,6 @@ class TestWikipediaCrawler(unittest.TestCase):
         link = "https://en.wikipedia.org/wiki/Python_(programming_language)"
         save_link(link)
         
-        # Проверяем, что ссылка сохранена
         self.assertTrue(is_link_saved(link))
 
     def test_is_link_saved(self):
@@ -29,7 +28,6 @@ class TestWikipediaCrawler(unittest.TestCase):
         link = "https://en.wikipedia.org/wiki/JavaScript"
         self.assertFalse(is_link_saved(link))
         
-        # Сохраняем ссылку и проверяем снова
         save_link(link)
         self.assertTrue(is_link_saved(link))
 
@@ -76,10 +74,8 @@ class TestWikipediaCrawler(unittest.TestCase):
         
         process_url(url, 1, visited, next_to_visit)
         
-        # Проверяем, что ссылка была сохранена
         mock_save_link.assert_called_once_with(url)
         
-        # Проверяем, что новая ссылка была добавлена в очередь
         self.assertIn("https://en.wikipedia.org/wiki/Python_(programming_language)", next_to_visit)
 
     @patch('wiki_crawler.process_url')
@@ -88,7 +84,6 @@ class TestWikipediaCrawler(unittest.TestCase):
         start_url = "https://en.wikipedia.org/wiki/Programming_language"
         crawl_links(start_url, depth=2)
         
-        # Проверяем, что функция process_url была вызвана для начальной ссылки
         mock_process_url.assert_called_with(start_url, 1, set(), set())
 
 if __name__ == '__main__':
