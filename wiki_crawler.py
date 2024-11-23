@@ -15,6 +15,11 @@ MAX_WORKERS = 50  # Максимальное количество потоков
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
+def set_db_name(db_name: str) -> None:
+    """Устанавливает имя базы данных."""
+    global DB_NAME
+    DB_NAME = db_name
+
 def init_db() -> None:
     """Создаёт базу данных и таблицу."""
     with sqlite3.connect(DB_NAME) as conn:
@@ -131,3 +136,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
