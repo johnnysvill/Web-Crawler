@@ -18,9 +18,12 @@ python --version
 
 3. Для запуска основного скрипта для обхода страниц используйте следующую команду:
 ```bash
-python wiki_crawler.py "<URL>"
+python wiki_crawler.py "URL"
 ```
-Вместо <URL> вставить ссылку на Википедию, например python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
+Вместо URL вставтье вашу ссылку на Википедию, например 
+```bash
+python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
+```
 
 4. Для запуска тестов используйте следующую команду:
 ```bash
