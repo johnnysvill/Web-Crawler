@@ -19,7 +19,6 @@ python --version
 python wiki_crawler.py "<URL>"
 ```
 Вместо <URL> вставить ссылку на Википедию, например python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
-
 4. Для запуска тестов используйте следующую команду:
 ```bash
 python -m unittest test_wiki_crawler.py
