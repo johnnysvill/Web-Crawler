@@ -1,20 +1,20 @@
 import unittest
 import sqlite3
 from unittest.mock import patch, MagicMock
-from wiki_crawler import init_db, save_link, is_link_saved, WikipediaParser, fetch_page, extract_links, crawl_links, process_url
+import os
+from wikipedia_scraper import init_db, save_link, is_link_saved, WikipediaParser, fetch_page, extract_links, crawl_links, process_url, set_db_name
 
 class TestWikipediaCrawler(unittest.TestCase):
 
     def setUp(self):
         """Настройка базы данных для тестов."""
+        set_db_name("test_links.db")  # Используем тестовую базу данных
         init_db()
 
     def tearDown(self):
         """Очистка базы данных после каждого теста."""
-        with sqlite3.connect("links.db") as conn:
-            cursor = conn.cursor()
-            cursor.execute("DROP TABLE IF EXISTS links")
-            conn.commit()
+        if os.path.exists("test_links.db"):
+            os.remove("test_links.db")
 
     def test_save_link(self):
         """Тест сохранения ссылки в базу данных."""
@@ -64,8 +64,8 @@ class TestWikipediaCrawler(unittest.TestCase):
         self.assertEqual(len(links), 1)
         self.assertEqual(links, {"https://en.wikipedia.org/wiki/Python_(programming_language)"})
 
-    @patch('wiki_crawler.extract_links')
-    @patch('wiki_crawler.save_link')
+    @patch('wikipedia_scraper.extract_links')
+    @patch('wikipedia_scraper.save_link')
     def test_process_url(self, mock_save_link, mock_extract_links):
         """Тест обработки URL и извлечения новых ссылок."""
         url = "https://en.wikipedia.org/wiki/Programming_language"
@@ -82,7 +82,7 @@ class TestWikipediaCrawler(unittest.TestCase):
         # Проверяем, что новая ссылка была добавлена в очередь
         self.assertIn("https://en.wikipedia.org/wiki/Python_(programming_language)", next_to_visit)
 
-    @patch('wiki_crawler.process_url')
+    @patch('wikipedia_scraper.process_url')
     def test_crawl_links(self, mock_process_url):
         """Тест обхода ссылок."""
         start_url = "https://en.wikipedia.org/wiki/Programming_language"
