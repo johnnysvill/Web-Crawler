@@ -20,7 +20,7 @@ python --version
 ```bash
 python wiki_crawler.py "URL"
 ```
-Вместо URL вставтье вашу ссылку на Википедию, например 
+Вместо URL вставтье вашу ссылку на Википедию. Например:
 ```bash
 python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
 ```
