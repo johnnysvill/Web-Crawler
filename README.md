@@ -20,7 +20,7 @@ python --version
 ```bash
 python wiki_crawler.py "URL"
 ```
-Вместо URL вставтье вашу ссылку на Википедию. Например:
+Вместо URL вставьте вашу ссылку на Википедию. Например:
 ```bash
 python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
 ```
@@ -29,3 +29,10 @@ python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
 ```bash
 python -m unittest test_wiki_crawler.py
 ```
+
+## Что проверяют тесты:
+1. Инициализацию базы данных.
+2. Сохранение и проверку ссылок в базе данных.
+3. Загрузку HTML-страниц.
+4. Извлечение ссылок из HTML-кода.
+5. Рекурсивный обход и сохранение ссылок.
