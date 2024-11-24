@@ -29,7 +29,7 @@ python wiki_crawler.py "https://en.wikipedia.org/wiki/Web_crawler"
 ```bash
 sqlite3 links.db
 ```
-Чтобы просмотреть содержимое конкретной таблицы, используйте команду SELECT:
+Чтобы просмотреть содержимое таблицы с ссылками, используйте команду SELECT:
 ```bash
 SELECT * FROM links;
 ```
