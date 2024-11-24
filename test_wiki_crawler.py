@@ -49,12 +49,13 @@ class TestWikipediaCrawler(unittest.TestCase):
         url = "https://en.wikipedia.org/wiki/Unknown"
         result = fetch_page(url)
         
-        self.assertEqual(result, "")
+        self.assertEqual(result[0], "")
+        self.assertEqual(result[1], url)
 
     def test_extract_links(self):
         """Тест извлечения ссылок из HTML-страницы."""
         html_content = "<html><head></head><body><a href='/wiki/Python_(programming_language)'>Python</a></body></html>"
-        parser = WikipediaParser()
+        parser = WikipediaParser(base_url="https://en.wikipedia.org")
         parser.feed(html_content)
         
         links = parser.get_links()
